@@ -3,7 +3,8 @@
 
 - name: Include specific Beats
   include_tasks: beats-debian.yml
-  when: ansible_os_family == 'Debian'
+  # Отключил автомат, скачал и установил все руками
+  when: ansible_os_family == 'Debian-Turned-Off'
 
 - name: Include specific Beats
   include_tasks: beats-redhat.yml
