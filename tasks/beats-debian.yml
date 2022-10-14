@@ -95,14 +95,14 @@
   get_url:
     url: >-
       {% if custom_package_url is defined %}{{ custom_package_url }}{%
-        else %}{{ beats_package_url }}/{{ beat }}/{{ beat }}_{{ beats_version }}_{{ os_arch }}.deb{% endif %}
-    dest: "/tmp/{{ beat }}_{{ beats_version }}_{{ os_arch }}.deb"
+        else %}{{ beats_package_url }}/{{ beat }}/{{ beat }}_{{ beats_version }}_{{ beats_os_arch }}.deb{% endif %}
+    dest: "/tmp/{{ beat }}_{{ beats_version }}_{{ beats_os_arch }}.deb"
     validate_certs: false
   when: not use_repository | bool
 
 - name: Debian - Ensure {{ beat }} is installed from downloaded package
   become: yes
   apt:
-    deb: "/tmp/{{ beat }}_{{ beats_version }}_{{ os_arch }}.deb"
+    deb: "/tmp/{{ beat }}_{{ beats_version }}_{{ beats_os_arch }}.deb"
   when: not use_repository | bool
   notify: restart the service
